@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO.Ports;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
+    public SerialPort stream = new SerialPort();
+
     [SerializeField] private float speed;
     [SerializeField] private float stoppingSpeed;
 
@@ -19,11 +24,55 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
+        if(SerialPort.GetPortNames().Length > 0)
+        {
+            foreach(string port in SerialPort.GetPortNames())
+            {
+                stream.PortName = port;
+                stream.BaudRate = 9600;
+
+                stream.Open();
+
+                if(stream.ReadLine().Split(',').Length == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    stream.Close();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Controller Not Found");
+        }
+
         defaultDistance = Camera.main.transform.position.z;
     }
 
     private void Update()
     {
+        if(stream.BytesToRead > 0)
+        {
+            string[] data = stream.ReadLine().Split(',');
+
+            if(data.Length == 2)
+            {
+                try
+                {
+                    float x = float.Parse(data[0], CultureInfo.InvariantCulture);
+                    float y = float.Parse(data[1], CultureInfo.InvariantCulture);
+
+                    direction = new Vector3(x, y);
+                }
+                catch(FormatException)
+                {
+                    Debug.Log("Parsing Failed");
+                }
+            }
+        }
+
         if(direction != Vector3.zero)
         {
             overshoot = direction;

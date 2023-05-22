@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public void Quit()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CameraMovement>().stream.Close();
+
         Application.Quit();
     }
 }
