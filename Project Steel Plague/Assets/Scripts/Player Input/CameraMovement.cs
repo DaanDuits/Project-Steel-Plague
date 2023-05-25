@@ -11,14 +11,14 @@ public class CameraMovement : MonoBehaviour
 {
     public SerialPort stream = new SerialPort();
 
+    [SerializeField] private float cameraDistance;
+    [SerializeField] private float zoomDistance;
+
     [SerializeField] private float speed;
     [SerializeField] private float stoppingSpeed;
 
     private Vector3 direction;
     private Vector3 overshoot;
-
-    [SerializeField] private float zoomDistance;
-    private float defaultDistance;
 
     private bool inZoom;
 
@@ -48,12 +48,12 @@ public class CameraMovement : MonoBehaviour
             Debug.Log("Controller Not Found");
         }
 
-        defaultDistance = Camera.main.transform.position.z;
+        Camera.main.transform.localPosition = new Vector3(0, 0, cameraDistance);
     }
 
     private void Update()
     {
-        if(stream.BytesToRead > 0)
+        if(stream.IsOpen && stream.BytesToRead > 0)
         {
             string[] data = stream.ReadLine().Split(',');
 
@@ -94,6 +94,6 @@ public class CameraMovement : MonoBehaviour
     {
         inZoom = value.Get<float>() > 0 || (value.Get<float>() >= 0 && inZoom);
 
-        Camera.main.transform.localPosition = inZoom ? new Vector3(0, 0, zoomDistance) : new Vector3(0, 0, defaultDistance);
+        Camera.main.transform.localPosition = inZoom ? new Vector3(0, 0, zoomDistance) : new Vector3(0, 0, cameraDistance);
     }
 }
