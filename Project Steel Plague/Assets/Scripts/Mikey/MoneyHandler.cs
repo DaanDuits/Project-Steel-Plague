@@ -32,7 +32,7 @@ public class MoneyHandler : MonoBehaviour
 
     public void UseMoney(int giveMoney)
     {
-        if (bits > 0 && bits >= giveMoney)
+        if (bits >= 0 && bits >= giveMoney)
         {
             bits -= giveMoney;
             bots += 1;
