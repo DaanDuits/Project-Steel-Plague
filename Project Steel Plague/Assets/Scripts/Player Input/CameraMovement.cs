@@ -26,6 +26,7 @@ public class CameraMovement : MonoBehaviour
     {
         if(SerialPort.GetPortNames().Length > 0)
         {
+            
             foreach(string port in SerialPort.GetPortNames())
             {
                 stream.PortName = port;
@@ -33,7 +34,7 @@ public class CameraMovement : MonoBehaviour
 
                 stream.Open();
 
-                if(stream.ReadLine().Split(',').Length == 2)
+                if (stream.ReadLine().Split(',').Length == 2)
                 {
                     break;
                 }
@@ -50,7 +51,6 @@ public class CameraMovement : MonoBehaviour
 
         Camera.main.transform.localPosition = new Vector3(0, 0, cameraDistance);
     }
-
     private void Update()
     {
         if(stream.IsOpen && stream.BytesToRead > 0)
