@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MoneyHandler : MonoBehaviour
 {
-    [SerializeField] private Text botAmountText;
-    [SerializeField] private Text byteAmountText;
-
-    private bool routineRunning = true;
+    [SerializeField] private TMP_Text botAmountText;
+    [SerializeField] private TMP_Text byteAmountText;
 
     //[SerializeField] private float upgradeDecimal = 1f;
     [SerializeField] private float bits;
@@ -33,7 +32,7 @@ public class MoneyHandler : MonoBehaviour
 
     public void UseMoney(int giveMoney)
     {
-        if (bits > 0 && bits >= giveMoney)
+        if (bits >= 0 && bits >= giveMoney)
         {
             bits -= giveMoney;
             bots += 1;
