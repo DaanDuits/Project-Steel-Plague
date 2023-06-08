@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactoryBehaviour : MonoBehaviour, IClickable
+public class FactoryBehaviour : MonoBehaviour
 {
-
-    public void OnClick()
-    {
-        BotHandler.main.AddBots(1);
-    }
     private void OnMouseDown()
     {
-        OnClick();
+        BotHandler.main.AddBots(1);
     }
 }
