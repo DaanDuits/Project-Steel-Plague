@@ -5,7 +5,7 @@ using TMPro;
 
 public class BotHandler : MonoBehaviour
 {
-    [SerializeField] int bots;
+    public int bots;
     [SerializeField] TMP_Text botCounter;
     [SerializeField] int price;
     //[SerializeField] float priceModifier;

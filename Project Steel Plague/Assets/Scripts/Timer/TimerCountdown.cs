@@ -7,7 +7,7 @@ public class TimerCountdown : MonoBehaviour
 {
     private TextMeshProUGUI timer;
 
-    [SerializeField][Range(10, 3599)][Tooltip("Start time in seconds.")] private int startTime;
+    [SerializeField][Range(10, 599)][Tooltip("Start time in seconds.")] private int startTime;
 
     private float t;
     private int m;
@@ -29,6 +29,11 @@ public class TimerCountdown : MonoBehaviour
             s = Mathf.FloorToInt(t % 60);
 
             timer.text = $"{m}:{s:D2}";
+        }
+        else
+        {
+            Debug.Log("Game Over");
+            Time.timeScale = 0;
         }
 
         t -= Time.deltaTime;
