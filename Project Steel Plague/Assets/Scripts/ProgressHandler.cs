@@ -8,8 +8,15 @@ public class ProgressHandler : MonoBehaviour
     public BotHandler robot;
     public Transform progressPanel;
 
+    [SerializeField] private GameObject topBar;
+    [SerializeField] private GameObject bottomBar;
+
     private void Start()
     {
+
+        topBar.SetActive(false);
+        bottomBar.SetActive(false);
+
         RectTransform panelRectTransform = progressPanel.GetComponent<RectTransform>();
 
         panelRectTransform.sizeDelta = new Vector2 (800, 0);
@@ -27,6 +34,7 @@ public class ProgressHandler : MonoBehaviour
         if (robot.bots >= 1 && robot.bots <= 99)
         {
             panelRectTransform.sizeDelta = new Vector2(800, 10);
+            bottomBar.SetActive(true);
         }
         else if (robot.bots >= 100 && robot.bots <= 499)
         {
@@ -54,7 +62,8 @@ public class ProgressHandler : MonoBehaviour
         }
         else if (robot.bots >= 100000)
         {
-            panelRectTransform.sizeDelta = new Vector2(800, 400);
+            panelRectTransform.sizeDelta = new Vector2(800, 370);
+            topBar.SetActive(true);
         }
     }
 }
