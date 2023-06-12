@@ -9,7 +9,7 @@ public class PlanetBehaviour : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI newByte;
 
-    public List<TextMeshProUGUI> pool = new List<TextMeshProUGUI>();
+    private List<TextMeshProUGUI> pool = new List<TextMeshProUGUI>();
 
     private TextMeshProUGUI GetPoolObject()
     {
