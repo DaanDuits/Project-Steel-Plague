@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private Collider planet;
     [SerializeField] private Collider[] factories;
+    [SerializeField] private Button[] buttons;
 
     private void Awake()
     {
@@ -25,6 +27,11 @@ public class GameManager : MonoBehaviour
             foreach(Collider c in factories)
             {
                 c.enabled = false;
+            }
+
+            foreach(Button b in buttons)
+            {
+                b.enabled = false;
             }
 
             Time.timeScale = 0;
