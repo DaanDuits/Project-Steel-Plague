@@ -11,7 +11,7 @@ public class ProgressHandler : MonoBehaviour
 
     private void Start()
     {
-        slider.maxValue = 10000;
+        slider.maxValue = 100;
     }
 
     private void Update()
