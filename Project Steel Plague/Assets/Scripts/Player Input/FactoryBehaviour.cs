@@ -32,6 +32,7 @@ public class FactoryBehaviour : MonoBehaviour
         BotHandler.main.AddBots(1);
 
         TextMeshProUGUI text = GetPoolObject();
+        text.text = $"+{FactoryHandler.main.botModifier}";
 
         text.transform.position = Input.mousePosition;
         text.gameObject.SetActive(true);

@@ -9,7 +9,8 @@ public class BotHandler : MonoBehaviour
     [SerializeField] TMP_Text botCounter;
     [SerializeField] int price;
     //[SerializeField] float priceModifier;
-    [SerializeField] int byteModifier, timeModifier;
+    public int byteModifier;
+    public float timeModifier;
     public static BotHandler main;
 
     private void Start()

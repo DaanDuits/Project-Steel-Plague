@@ -31,9 +31,10 @@ public class PlanetBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
-        ByteHandler.main.AddBytes(1);
+        ByteHandler.main.AddBytes();
 
         TextMeshProUGUI text = GetPoolObject();
+        text.text = $"+{ByteHandler.main.clickAmount}";
 
         text.transform.position = Input.mousePosition;
         text.gameObject.SetActive(true);
