@@ -7,11 +7,16 @@ public class ProgressHandler : MonoBehaviour
 {
     public BotHandler robot;
 
+    [SerializeField] private GameObject winMenu;
+    [SerializeField] private Collider planet;
+    [SerializeField] private Collider[] factories;
+
     [SerializeField] Slider slider;
 
     private void Start()
     {
-        slider.maxValue = 100;
+        slider.maxValue = 200;
+        winMenu.SetActive(false);
     }
 
     private void Update()
@@ -23,32 +28,27 @@ public class ProgressHandler : MonoBehaviour
             case 1:
                 NewMilestone();
                 break;
+            case 50:
+                NewMilestone();
+                break;
             case 100:
                 NewMilestone();
                 break;
-            case 250:
+            case 150:
                 NewMilestone();
                 break;
-            case 500:
+            case 200:
                 NewMilestone();
-                break;
-            case 750:
-                NewMilestone();
-                break;
-            case 1000:
-                NewMilestone();
-                break;
-            case 2500:
-                NewMilestone();
-                break;
-            case 5000:
-                NewMilestone();
-                break;
-            case 7500:
-                NewMilestone();
-                break;
-            case 10000:
-                NewMilestone();
+                Debug.Log("Game Over");
+                winMenu.SetActive(true);
+                planet.enabled = false;
+
+                foreach (Collider c in factories)
+                {
+                    c.enabled = false;
+                }
+
+                Time.timeScale = 0;
                 break;
         }
     }
