@@ -6,6 +6,8 @@ using UnityEngine;
 public class FactoryBehaviour : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI newFactory;
+    [SerializeField] private AudioSource factory;
+    [SerializeField] private AudioClip clickFactorySound;
 
     private List<TextMeshProUGUI> pool = new List<TextMeshProUGUI>();
 
@@ -29,6 +31,8 @@ public class FactoryBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
+        factory.PlayOneShot(clickFactorySound);
+
         BotHandler.main.AddBots(1);
 
         TextMeshProUGUI text = GetPoolObject();

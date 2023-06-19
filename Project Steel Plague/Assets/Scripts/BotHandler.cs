@@ -13,6 +13,8 @@ public class BotHandler : MonoBehaviour
     public int byteModifier;
     public float timeModifier;
     public static BotHandler main;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clipBuy;
 
     private bool tutorialText = true;
 
@@ -30,6 +32,8 @@ public class BotHandler : MonoBehaviour
 
     public void BuyBots(int amount)
     {
+        audioSource.PlayOneShot(clipBuy);
+
         if (ByteHandler.main.CheckPrices(price))
         {
             ByteHandler.main.RemoveBytes(price);

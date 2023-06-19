@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Linq;
+using UnityEngine.Audio;
 
 public class PlanetBehaviour : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI newByte;
+    [SerializeField] private AudioSource planet;
+    [SerializeField] private AudioClip clickPlanetSound;
 
     private List<TextMeshProUGUI> pool = new List<TextMeshProUGUI>();
     public bool tutorialText = true;
@@ -32,6 +35,8 @@ public class PlanetBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
+        planet.PlayOneShot(clickPlanetSound);
+
         ByteHandler.main.AddBytes();
 
         TextMeshProUGUI text = GetPoolObject();

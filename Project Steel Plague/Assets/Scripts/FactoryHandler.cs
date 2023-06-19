@@ -8,6 +8,8 @@ public class FactoryHandler : MonoBehaviour
     [SerializeField] int price;
     [SerializeField] Transform factoriesParent;
     [SerializeField] private TMP_Text factoryGiveCounter;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clipBuy;
 
     public int botModifier;
     public float timeModifier;
@@ -25,6 +27,8 @@ public class FactoryHandler : MonoBehaviour
 
     public void AddFactory()
     {
+        audioSource.PlayOneShot(clipBuy);
+
         if (ByteHandler.main.CheckPrices(price) && factories < factoriesParent.childCount)
         {
             ByteHandler.main.RemoveBytes(price);

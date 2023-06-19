@@ -11,6 +11,8 @@ public class UpgradeHandler : MonoBehaviour
 
     [SerializeField]
     TMP_Text clickText, botText, factoryText;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clipBuy;
 
     int[] clickPrices = new int[]{
         20, 500, 2000
@@ -33,6 +35,7 @@ public class UpgradeHandler : MonoBehaviour
     {
         if (ByteHandler.main.CheckPrices(clickPrices[clickIndex]))
         {
+            audioSource.PlayOneShot(clipBuy);
             ByteHandler.main.clickAmount++;
             ByteHandler.main.RemoveBytes(clickPrices[clickIndex]);
             clickIndex++;
@@ -50,7 +53,7 @@ public class UpgradeHandler : MonoBehaviour
     {
         if (ByteHandler.main.CheckPrices(botPrices[botIndex]))
         {
-
+            audioSource.PlayOneShot(clipBuy);
             if (botIndex == 0 || botIndex == 2)
                 BotHandler.main.timeModifier /= 2;
             else if (botIndex == 1 || botIndex == 3)
@@ -71,6 +74,7 @@ public class UpgradeHandler : MonoBehaviour
     {
         if (ByteHandler.main.CheckPrices(factoryPrices[factoryIndex]))
         {
+            audioSource.PlayOneShot(clipBuy);
             if (factoryIndex == 0)
                 StartCoroutine(FactoryHandler.main.automateFactories());
             else if (factoryIndex == 1 || factoryIndex == 3)
