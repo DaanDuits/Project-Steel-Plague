@@ -27,10 +27,9 @@ public class FactoryHandler : MonoBehaviour
 
     public void AddFactory()
     {
-        audioSource.PlayOneShot(clipBuy);
-
         if (ByteHandler.main.CheckPrices(price) && factories < factoriesParent.childCount)
         {
+            audioSource.PlayOneShot(clipBuy);
             ByteHandler.main.RemoveBytes(price);
             factoriesParent.GetChild(factories).gameObject.SetActive(true);
             factories++;

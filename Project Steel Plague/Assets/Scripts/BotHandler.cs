@@ -32,10 +32,9 @@ public class BotHandler : MonoBehaviour
 
     public void BuyBots(int amount)
     {
-        audioSource.PlayOneShot(clipBuy);
-
         if (ByteHandler.main.CheckPrices(price))
         {
+            audioSource.PlayOneShot(clipBuy);
             ByteHandler.main.RemoveBytes(price);
             bots += amount;
             //price += (int)(price * priceModifier);
