@@ -16,10 +16,10 @@ public class UpgradeHandler : MonoBehaviour
         20, 500, 2000
     };
     int[] botPrices = new int[]{
-        2000, 7500, 20000, 50000
+        2000, 5000, 7500, 10000
     };
     int[] factoryPrices = new int[]{
-        7000, 20000, 60000, 150000
+        5000, 8000, 12000, 180000
     };
 
     private void Start()
@@ -81,7 +81,7 @@ public class UpgradeHandler : MonoBehaviour
             factoryIndex++;
 
             if (factoryIndex < factoryPrices.Length)
-                factoryText.text = "Factories: " + factoryPrices[factoryIndex];
+                factoryText.text = "" + factoryPrices[factoryIndex];
             else
             {
                 factoryText.text = "Complete";
