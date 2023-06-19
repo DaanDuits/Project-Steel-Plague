@@ -10,7 +10,8 @@ public class BotHandler : MonoBehaviour
     [SerializeField] TMP_Text botGiveCounter;
     [SerializeField] int price;
     //[SerializeField] float priceModifier;
-    [SerializeField] int byteModifier, timeModifier;
+    public int byteModifier;
+    public float timeModifier;
     public static BotHandler main;
 
     private bool tutorialText = true;
@@ -23,7 +24,6 @@ public class BotHandler : MonoBehaviour
 
     private void Update()
     {
-
         botCounter.text = bots.ToString();
         botGiveCounter.text = (bots * byteModifier).ToString();
     }

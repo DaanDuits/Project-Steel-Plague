@@ -14,9 +14,9 @@ public class PlanetBehaviour : MonoBehaviour
 
     private TextMeshProUGUI GetPoolObject()
     {
-        for(int i = 0; i < pool.Count; i++)
+        for (int i = 0; i < pool.Count; i++)
         {
-            if(!pool[i].gameObject.activeInHierarchy)
+            if (!pool[i].gameObject.activeInHierarchy)
             {
                 return pool[i];
             }
@@ -32,9 +32,10 @@ public class PlanetBehaviour : MonoBehaviour
 
     private void OnMouseDown()
     {
-        ByteHandler.main.AddBytes(1);
+        ByteHandler.main.AddBytes();
 
         TextMeshProUGUI text = GetPoolObject();
+        text.text = $"+{ByteHandler.main.clickAmount}";
 
         text.transform.position = Input.mousePosition;
         text.gameObject.SetActive(true);
