@@ -8,6 +8,8 @@ public class ByteHandler : MonoBehaviour
     [SerializeField] TMP_Text byteCounter;
     [SerializeField] int bytes;
     public static ByteHandler main;
+    public int clickAmount = 1;
+
     private void Awake()
     {
         main = this;
@@ -18,6 +20,10 @@ public class ByteHandler : MonoBehaviour
         byteCounter.text = bytes.ToString();
     }
 
+    public void AddBytes()
+    {
+        bytes += clickAmount;
+    }
     public void AddBytes(int amount)
     {
         bytes += amount;

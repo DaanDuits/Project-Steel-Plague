@@ -11,9 +11,9 @@ public class FactoryBehaviour : MonoBehaviour
 
     private TextMeshProUGUI GetPoolObject()
     {
-        for(int i = 0; i < pool.Count; i++)
+        for (int i = 0; i < pool.Count; i++)
         {
-            if(!pool[i].gameObject.activeInHierarchy)
+            if (!pool[i].gameObject.activeInHierarchy)
             {
                 return pool[i];
             }
@@ -32,6 +32,7 @@ public class FactoryBehaviour : MonoBehaviour
         BotHandler.main.AddBots(1);
 
         TextMeshProUGUI text = GetPoolObject();
+        text.text = $"+{FactoryHandler.main.botModifier}";
 
         text.transform.position = Input.mousePosition;
         text.gameObject.SetActive(true);
