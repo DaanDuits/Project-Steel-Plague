@@ -13,6 +13,8 @@ public class BotHandler : MonoBehaviour
     [SerializeField] int byteModifier, timeModifier;
     public static BotHandler main;
 
+    private bool tutorialText = true;
+
     private void Start()
     {
         main = this;
@@ -33,6 +35,13 @@ public class BotHandler : MonoBehaviour
             ByteHandler.main.RemoveBytes(price);
             bots += amount;
             //price += (int)(price * priceModifier);
+
+            if(tutorialText)
+            {
+                tutorialText = false;
+                GameObject.Find("Tutorial").GetComponentInChildren<TextMeshProUGUI>().text = "Robots give you bytes,\nyou can use them to buy other things";
+                StartCoroutine(TutorialTimer());
+            }
         }
     }
 
@@ -49,5 +58,12 @@ public class BotHandler : MonoBehaviour
 
             yield return new WaitForSeconds(timeModifier);
         }
+    }
+
+    IEnumerator TutorialTimer()
+    {
+        yield return new WaitForSeconds(5);
+
+        GameObject.Find("Tutorial").GetComponentInChildren<TextMeshProUGUI>().text = "";
     }
 }

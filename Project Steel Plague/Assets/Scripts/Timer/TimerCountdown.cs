@@ -21,7 +21,7 @@ public class TimerCountdown : MonoBehaviour
     {
         endMenu.SetActive(false);
         timer = GetComponentInChildren<TextMeshProUGUI>();
-        t = startTime + 1;
+        t = startTime;
     }
 
     private void Update()
@@ -48,6 +48,9 @@ public class TimerCountdown : MonoBehaviour
             Time.timeScale = 0;
         }
 
-        t -= Time.deltaTime;
+        if(!planet.GetComponent<PlanetBehaviour>().tutorialText)
+        {
+            t -= Time.deltaTime;
+        }
     }
 }

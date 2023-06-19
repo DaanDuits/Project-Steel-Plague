@@ -10,6 +10,7 @@ public class PlanetBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI newByte;
 
     private List<TextMeshProUGUI> pool = new List<TextMeshProUGUI>();
+    public bool tutorialText = true;
 
     private TextMeshProUGUI GetPoolObject()
     {
@@ -37,5 +38,11 @@ public class PlanetBehaviour : MonoBehaviour
 
         text.transform.position = Input.mousePosition;
         text.gameObject.SetActive(true);
+
+        if(tutorialText)
+        {
+            tutorialText = false;
+            GameObject.Find("Tutorial").GetComponent<TextMeshProUGUI>().text = "If you have 5 bytes,\nyou can buy a robot";
+        }
     }
 }
